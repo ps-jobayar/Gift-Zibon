@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#00ffcc">
+    <title>ZIBON GIFT SENDER — VIP Control Panel</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Matrix Glow Effect -->
+    <div class="cyber-glow-bg"></div>
+
+    <header class="vip-header">
+        <div class="logo-wrapper">
+            <img src="https://i.ibb.co.com/WvRRVmpX/36de33cdbab3024d1defd291fa53fe8d.jpg" class="vip-neon-logo" alt="Zibon Logo">
+            <div class="brand-text">
+                <h1 class="glitch" data-text="ZIBON GIFT SENDER">ZIBON GIFT SENDER</h1>
+                <span class="sub-status">★ NEXT-GEN PREMIUM INJECTOR SYSTEM ★</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-viewport">
+        <!-- Section 1: Secure Core Authentication -->
+        <section class="auth-card" id="loginBox">
+            <div class="secure-badge">SECURE PROTOCOL V3.8</div>
+            <h2>ACCESS CONTROL</h2>
+            <p class="panel-desc">Provide your encrypted JWT Token below to establish a connection with Garena's mainframe bypass.</p>
+            
+            <div class="input-glow-group">
+                <input type="text" id="jwtInput" placeholder="⚡ ENTER GARENA JWT AUTH TOKEN..." autocomplete="off">
+                <span class="input-bar"></span>
+            </div>
+            
+            <button id="loadBtn" class="vip-action-btn">
+                <span class="btn-text">INITIALIZE SECURE SYSTEM</span>
+                <span class="btn-flare"></span>
+            </button>
+            <div id="errorMsg" class="error-banner"></div>
+        </section>
+
+        <!-- Section 2: Store Matrix Control Panel -->
+        <section class="store-matrix" id="storeBox" style="display: none;">
+            <!-- VIP Vault Statistics Dashboard -->
+            <div class="vault-dashboard">
+                <div class="stat-node pulse-cyan">
+                    <div class="node-icon">💎</div>
+                    <div class="node-info">
+                        <span class="node-title">DIAMONDS VAULT</span>
+                        <h3 id="valDiamond">--</h3>
+                    </div>
+                </div>
+                <div class="stat-node pulse-gold">
+                    <div class="node-icon">🪙</div>
+                    <div class="node-info">
+                        <span class="node-title">GOLD RESERVE</span>
+                        <h3 id="valGold">--</h3>
+                    </div>
+                </div>
+                <div class="stat-node full-node pulse-magenta">
+                    <div class="node-icon">⚡</div>
+                    <div class="node-info">
+                        <span class="node-title">LAST SYNCED TOP-UP TIME</span>
+                        <h3 id="valTopup">--</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Operational HUD Controls -->
+            <div class="hud-control-bar">
+                <div class="hud-title-group">
+                    <span class="live-indicator">● LIVE CORE INDEX</span>
+                    <h2>COMMODITY TRANSMITTER</h2>
+                </div>
+                <div class="counter-pill" id="giftsSent">🎁 DISPATCHED TODAY: 0</div>
+            </div>
+
+            <!-- Premium Cyber Filter Categories -->
+            <div class="filter-wrapper">
+                <div class="category-scroll-container" id="categoryBar">
+                    <button class="matrix-cat-btn active" data-cat="All">🎯 ALL MATRIX</button>
+                </div>
+            </div>
+
+            <!-- Ultimate Custom-grid Items Matrix -->
+            <div class="items-grid-matrix" id="itemsGrid"></div>
+        </section>
+    </main>
+
+    <!-- Transmit Payload Modal UI -->
+    <div id="giftModal" class="cyber-modal">
+        <div class="modal-cyber-frame animate-slide-in">
+            <div class="modal-neon-header">
+                <h3>🛰️ ITEM TRANSMISSION MANIFEST</h3>
+                <span class="close-cross" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body-content">
+                <div class="target-field">
+                    <label>TARGET ACCOUNT UID</label>
+                    <input type="text" id="targetUid" placeholder="Ex: 102938475" autocomplete="off">
+                </div>
+                <div class="target-field">
+                    <label>ENCRYPTED LOG/MESSAGE (OPTIONAL)</label>
+                    <input type="text" id="giftMsg" placeholder="Transmission Note..." value="Compliments from ZIBON GIFT SYSTEM!">
+                </div>
+                <div class="modal-action-row">
+                    <button id="confirmSend" class="confirm-injection-btn">LAUNCH EXPLOIT</button>
+                    <button onclick="closeModal()" class="cancel-injection-btn">ABORT PIPELINE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
