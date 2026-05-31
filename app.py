@@ -192,5 +192,9 @@ def pipe_gift_transmission():
     except Exception as e: 
         return jsonify({"success": False, "message": f"💥 CRITICAL PIPELINE CORRUPTION: {str(e)}"})
 
-if __name__ == '__main__':
-    app.run(port=8080)
+if __name__ == "__main__":
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 10000)),
+        debug=False
+                )
