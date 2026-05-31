@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JNL JWT CONVERTER</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Outfit',sans-serif;
+}
+
+body{
+    background:#050505;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    overflow:hidden;
+    background-image:
+        radial-gradient(circle at top right, rgba(255,255,255,0.05), transparent 25%),
+        radial-gradient(circle at bottom left, rgba(255,255,255,0.03), transparent 20%);
+}
+
+.container{
+    width:95%;
+    max-width:720px;
+    background:rgba(18,18,18,0.96);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:30px;
+    padding:45px;
+    box-shadow:0 25px 60px rgba(0,0,0,0.55);
+    backdrop-filter:blur(16px);
+    position:relative;
+    overflow:hidden;
+}
+
+.container::before{
+    content:'';
+    position:absolute;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.03);
+    top:-120px;
+    right:-120px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    margin-bottom:18px;
+}
+
+.logo img{
+    width:65px;
+    height:65px;
+    object-fit:contain;
+    filter:drop-shadow(0 0 12px rgba(255,255,255,0.18));
+}
+
+.logo h1{
+    font-size:2.3rem;
+    font-family:'Sora',sans-serif;
+    font-weight:800;
+    background:linear-gradient(90deg,#ffffff,#bcbcbc,#ffffff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+    text-align:center;
+    color:#8d8d8d;
+    margin-bottom:35px;
+    font-size:15px;
+    letter-spacing:1px;
+}
+
+.input-box{
+    width:100%;
+    background:#0d0d0d;
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:18px;
+    color:white;
+    font-size:15px;
+    outline:none;
+    transition:0.25s ease;
+}
+
+.input-box:focus{
+    border-color:#ffffff;
+    box-shadow:0 0 0 4px rgba(255,255,255,0.08);
+}
+
+.convert-btn{
+    width:100%;
+    margin-top:20px;
+    padding:16px;
+    border:none;
+    border-radius:16px;
+    background:linear-gradient(135deg,#ffffff,#d0d0d0);
+    color:#000000;
+    font-size:1rem;
+    font-weight:800;
+    cursor:pointer;
+    transition:0.25s ease;
+    font-family:'Sora',sans-serif;
+}
+
+.convert-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(255,255,255,0.15);
+}
+
+.output{
+    margin-top:28px;
+    background:#0b0b0b;
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:22px;
+    display:none;
+}
+
+.output-title{
+    font-size:14px;
+    color:#8f8f8f;
+    margin-bottom:12px;
+    letter-spacing:1px;
+}
+
+.jwt-box{
+    background:#050505;
+    border:1px solid rgba(255,255,255,0.08);
+    padding:18px;
+    border-radius:14px;
+    word-break:break-word;
+    font-size:14px;
+    line-height:1.7;
+    color:#ffffff;
+}
+
+.copy-btn{
+    margin-top:18px;
+    background:#ffffff;
+    color:#000000;
+    border:none;
+    padding:12px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:700;
+    transition:0.25s ease;
+}
+
+.copy-btn:hover{
+    transform:translateY(-2px);
+}
+
+.error{
+    margin-top:18px;
+    background:#111111;
+    border:1px solid rgba(255,255,255,0.08);
+    padding:14px;
+    border-radius:14px;
+    color:#ffffff;
+    display:none;
+    text-align:center;
+}
+
+.footer{
+    margin-top:30px;
+    text-align:center;
+    color:#666666;
+    font-size:13px;
+    letter-spacing:1px;
+}
+
+@media(max-width:700px){
+
+    .container{
+        padding:30px;
+    }
+
+    .logo h1{
+        font-size:1.7rem;
+    }
+
+    .logo img{
+        width:52px;
+        height:52px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        <img src="https://i.ibb.co/ccc4YBLH/your-image.png">
+        <h1>JNL JWT CONVERTER</h1>
+    </div>
+
+    <div class="subtitle">
+        ACCESS TOKEN TO JWT CONVERTER
+    </div>
+
+    <input 
+        type="text"
+        id="accessToken"
+        class="input-box"
+        placeholder="ENTER ACCESS TOKEN..."
+    >
+
+    <button class="convert-btn" onclick="convertJWT()">
+        CONVERT TO JWT
+    </button>
+
+    <div class="error" id="errorBox"></div>
+
+    <div class="output" id="outputBox">
+
+        <div class="output-title">
+            JWT TOKEN
+        </div>
+
+        <div class="jwt-box" id="jwtOutput"></div>
+
+        <button class="copy-btn" onclick="copyJWT()">
+            COPY JWT
+        </button>
+
+    </div>
+
+    <div class="footer">
+        JNL BLACK WHITE EDITION
+    </div>
+
+</div>
+
+<script>
+
+async function convertJWT(){
+
+    const token = document.getElementById('accessToken').value.trim();
+
+    const outputBox = document.getElementById('outputBox');
+    const output = document.getElementById('jwtOutput');
+    const errorBox = document.getElementById('errorBox');
+
+    outputBox.style.display = 'none';
+    errorBox.style.display = 'none';
+
+    if(!token){
+
+        errorBox.style.display = 'block';
+        errorBox.innerHTML = 'Please enter access token.';
+        return;
+    }
+
+    try{
+
+        const response = await fetch(
+            `https://acesstojwt-sigma.vercel.app/token?access_token=${token}`
+        );
+
+        const data = await response.json();
+
+        console.log(data);
+
+        // JWT detect
+        if(data && data.token){
+
+            outputBox.style.display = 'block';
+
+            // Sirf JWT output
+            output.innerHTML = data.token;
+
+        }else{
+
+            errorBox.style.display = 'block';
+            errorBox.innerHTML = 'JWT not fetched.';
+
+        }
+
+    }catch(err){
+
+        console.log(err);
+
+        errorBox.style.display = 'block';
+        errorBox.innerHTML = 'JWT not fetched.';
+    }
+
+}
+
+function copyJWT(){
+
+    const text = document.getElementById('jwtOutput').textContent;
+
+    navigator.clipboard.writeText(text);
+
+    alert('JWT copied successfully.');
+
+}
+
+</script>
+
+</body>
+</html>
